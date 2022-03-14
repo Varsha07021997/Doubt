@@ -1,5 +1,7 @@
-package com.restful.webservices.restfulwebservices.Entities;
+package com.restful.webservices.restfulwebservices.Entities.JPA;
 
+import com.restful.webservices.restfulwebservices.Entities.JPA.empRepository;
+import com.restful.webservices.restfulwebservices.Entities.JPA.employee;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +74,7 @@ class employeeTest {
     @Test
     public void testFindByName()
     {
-        List<employee> list=empRepo.findByName("Nisha");
+        List<employee> list=empRepo.findByName("Varsha");
         list.forEach(e-> System.out.println("Employee ID :"+e.getId()+"   Employee Name :"+e.getName()));
     }
 
@@ -91,7 +93,7 @@ class employeeTest {
         list.forEach(e-> System.out.println(e.getName()));
     }
     @Test
-    public void testFindAllPaging()
+ public void testFindAllPaging()
     {
         //Here page is page number and size is how many records we want to display
         Pageable pageable=PageRequest.of(0,2);
@@ -109,7 +111,7 @@ class employeeTest {
     @Test
     public void testFindAllPagingAndSort()
     {
-        Pageable pageable=PageRequest.of(0,3, Sort.Direction.ASC,"age");
+        Pageable pageable=PageRequest.of(0,3, Sort.by(Sort.Order.asc("age"),Sort.Order.desc("Id")));
         Page<employee> res=empRepo.findAll(pageable);
         res.forEach(e-> System.out.println(e.getId()+"    "+e.getAge()+"    "+e.getName() +"    "+e.getLocation()));
 

@@ -1,4 +1,4 @@
-package com.restful.webservices.restfulwebservices.Entities;
+package com.restful.webservices.restfulwebservices.Entities.JPA;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
